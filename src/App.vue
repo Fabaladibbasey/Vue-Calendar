@@ -4,13 +4,14 @@
 			Calendar
 		</h1>
 		<div class="w-4/5 flex justify-between p-2 mx-auto">
-			<h4 class="text-3xl text-blue-700">{{ strMonth }}</h4>
-			<h4 class="text-3xl text-blue-700">{{year}}</h4>
+			<h4 class="text-3xl text-blue-700">{{strMonth}}</h4>
+			<input type="number" min="1970" class="border rounded-sm w-28 p-2 text-3xl text-blue-700 focus:outline-none" v-model.number="updateYear" />
 		</div>
 		<section class="border-2 w-4/5 flex mx-auto">
 			<p style="width: 14.29%;" class="border-2 w-2/3 text-center " v-for="day in days" :key="day">{{day}}</p>
 		</section>
-		<section class=" h-auto bg-gradient-to-tr from-blue-500 to-blue-600 w-4/5 flex mx-auto flex-wrap text-center place-items-center">
+		<section
+			class=" h-auto bg-gradient-to-tr from-blue-500 to-blue-600 w-4/5 flex mx-auto flex-wrap text-center place-items-center">
 			<p style="width: 14.28%;" class="p-2" v-for="i in monthStartDay" :key="i">
 			</p>
 			<p style="width: 14.28%;" class="p-2 text-white " v-for="i in daysInMonth" :key="i"
@@ -50,7 +51,16 @@ export default {
 			month: 'long'
 		})
 	},
+	updateYear: {
+		get(){
 
+			if(!this.year) return new Date().getFullYear()
+			return this.year
+		},
+		set(year){
+			this.year = year
+		}
+	},
 	monthStartDay(){
 		return new Date(this.year, this.month, 1).getDay()
 	},
