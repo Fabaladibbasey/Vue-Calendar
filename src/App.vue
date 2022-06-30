@@ -15,13 +15,13 @@
 			<p style="width: 14.28%;" class="p-2" v-for="i in monthStartDay" :key="i">
 			</p>
 			<p style="width: 14.28%;" class="p-2 text-white " v-for="i in daysInMonth" :key="i"
-				:class="{'bg-red-900' : getWeekDay(i) === 0, 'bg-yellow-400': isToday(i) }">
+				:class="{'bg-red-900' : getWeekDay(i) === 0, 'bg-yellow-400': isToday(i), 'text-gray-300' : getWeekDay(i) === 6 }">
 				{{i}}
 			</p>
 		</section>
 		<div class="border-2 w-4/5 flex justify-between mx-auto">
-			<button class="bg-gray-400 p-2 text-center border rounded capitalize mr-2 hover:bg-slate-400 transition-all"
-				@click="previous">previous</button>
+			<button class="bg-gray-400 p-2 text-center border rounded capitalize mr-2 hover:bg-slate-400 transition-all disabled:cursor-not-allowed"
+				@click="previous" :disabled="updateYear <= 1970" >previous</button>
 			<button
 				class="bg-gray-400 p-2 text-center border rounded capitalize flex-auto hover:bg-slate-400 transition-all"
 				@click="next">next</button>
